@@ -1,9 +1,15 @@
-# IS-105 SEM02 PROSESS
+# Eksperiment med minneallokering (både stack og heap)
 
-| Filnavn | Beskrivelse |
-| ----------- | ----------- |
-| **common.h** | En "header"-fil for programmeringsspråket C, som kan inkluderes i kildekode, dvs. i filer som har etternavn ".c". |
-| **countem.h** | Programmet teller prosesser, bruker- og kjernerom tråder, som er registrert i det primære minne; dette er et øyeblikksbilde. |
-| **cpu.c** | Kildekode i programmeringsspråket C, som implementerer main-funksjonen, som kaller opp en funksjon definert i **common.h**. |
-| **nrcores.c** | Returnerer antall kjerner (dette er ikke sikkert i virtuelle miljøer). | 
- 
+**stackoverflow.c** er generert av GPT UiO 2024-03-06 med prompt "lag et program som overfyller stack". Kan kompileres med 
+
+```
+$ gcc -o stackoverflow stackoverflow.c 
+
+```
+
+Kan analyseres med "strace" og "valgrind"
+
+```
+$ strace -c ./stackoverflow
+$ valgrind --leak-check=yes ./stackoverflow
+```
