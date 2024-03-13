@@ -1,3 +1,4 @@
+ARG DEBIAN_FRONTEND=noninteractive
 FROM ubuntu:24.04
 RUN apt-get update \
 && apt-get dist-upgrade -y \
@@ -8,7 +9,15 @@ sudo \
 nano \
 wget \
 curl \
-git
+git \
+build-essential \
+gcc \
+openjdk-21-jdk \
+mono-complete \
+python3 \
+strace \
+valgrind
+
 RUN useradd -G sudo -m -d /home/Oda -s /bin/bash -p "$(openssl passwd -1 Hei)" Oda
 USER Oda
 WORKDIR /home/Oda
@@ -29,3 +38,6 @@ SHELL ["/bin/bash", "-c"]
 RUN mkdir -p $HOME/go/{src,bin}
 ENV GOPATH="/home/Oda/go"
 ENV PATH="${PATH}:${GOPATH}/bin:/usr/local/go/bin"
+RUN curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf \
+| sh -s -- -y
+ENV PATH="${PATH}:${HOME}/.cargo/bin"

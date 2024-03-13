@@ -1,3 +1,4 @@
+ARG DEBIAN_FRONTEND=noninteractive
 FROM ubuntu:24.04
 RUN apt-get update \
 && apt-get dist-upgrade -y \
@@ -8,7 +9,14 @@ sudo \
 nano \
 wget \
 curl \
-git
+git \
+build-essential \
+gcc \
+openjdk-21-jdk \
+mono-complete \
+python3 \
+strace \
+valgrind
 RUN useradd -G sudo -m -d /home/BRUKER -s /bin/bash -p "$(openssl
 passwd -1 PASSWD)" BRUKER
 USER BRUKER
